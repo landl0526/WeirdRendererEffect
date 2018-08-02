@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App6"
+             x:Class="App6.MainPage"
+             xmlns:forms="clr-namespace:Plugin.MediaManager.Forms;assembly=Plugin.MediaManager.Forms">
+
+    <!--<Grid 
+                        x:Name="VoorzieningenGrid"
+                        Padding="0,5,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label>
+            <Label.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding VehicleState.Tires.TypeSelectedIndex}" Value="0">
+                    <Setter Property="Text" Value="Summer" />
+                </DataTrigger>
+            </Label.Triggers> >
+        </Label>
+
+        <Button x:Name="MyBtn" Text="Push" Clicked="Button_Clicked"/>
+
+        --><!--<Image Source="{Binding ImageSource}"/>--><!--
+        <forms:VideoView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                     Source="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" AspectMode="AspectFill"/>
+    </Grid>-->
+    <StackLayout Padding="10, 10, 10, 10">
+
+        <ListView ItemsSource="{Binding ListItems}" x:Name="llv" SelectedItem="{Binding SelectedListViewItem, Mode=TwoWay}" HasUnevenRows="True" ItemSelected="llv_ItemSelected">
+            <ListView.Header>
+                <StackLayout Padding="10,5,0,5" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="{Binding Datetime}"/>
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding ItemName}" TextColor="{Binding SelectedColor}" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Margin="5,5,5,5" />
+                                <Label Text="{Binding DateTimeSet}" Margin="5,5,5,5" VerticalOptions="Center" HorizontalOptions="End"/>
+                                <Image Source="charm.png" VerticalOptions="CenterAndExpand" HeightRequest="20" WidthRequest="20">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=PlayOrPauseButtonPressed}" 
+                                             CommandParameter="{Binding .}" >
+
+                                        </TapGestureRecognizer>
+
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                            </StackLayout>
+
+                        </StackLayout>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete" IsDestructive="True" Command="{Binding Path=DeleteSingleTask}"
+                                CommandParameter="{Binding .}"/>
+                        </ViewCell.ContextActions>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
